@@ -6,10 +6,10 @@
     <script type="text/javascript" src="app.js"></script>
   </head>
   <body>
-    <h1>Todos</h1>
     <div ng-controller="TodosCtrl">
-      {{ newTodo }}<br>
+      <h1>Todos ({{ todos.length }})</h1>
       <input type="text" ng-model="newTodo.title"/>
+      <button>Add</button>
     </div>
   </body>
 </html>
