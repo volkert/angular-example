@@ -3,17 +3,27 @@
     <title>My Angular App</title>
     <script type="text/javascript" src="libs/angular.js"></script>
     <link href="libs/bootstrap.min.css" rel="stylesheet">
+    <link href="style.css" rel="stylesheet">
     <script type="text/javascript" src="app.js"></script>
   </head>
   <body>
     <div ng-controller="TodosCtrl">
       <h1>Todos ({{ todos.length }})</h1>
-      <input type="text" ng-model="newTodo"/>
-      <button ng-click="add()">Add</button>
+      <input type="text"
+             ng-model="newTodo"
+             ng-keyup="keyup($event)"/>
+      <button ng-click="add()"
+              ng-disabled="!newTodo">Add</button>
 
-      <div ng-repeat="todo in todos">
-        {{ todo.title }}
-      </div>
+      <ul>
+        <li ng-repeat="todo in todos"
+            ng-class="{ true: 'done' }[todo.done]">
+          {{ todo.title }}
+          <button
+              ng-show="!todo.done"
+              ng-click="todo.done = true">Done</button>
+        </li>
+      </ul>
     </div>
   </body>
 </html>
