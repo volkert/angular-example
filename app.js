@@ -1,8 +1,7 @@
 var MwayTodo = angular.module('MwayTodo', []);
 
-MwayTodo.controller('TodosCtrl', function ($scope) {
-  $scope.todos = [];
-
+MwayTodo.controller('TodosCtrl', function ($scope, Todo) {
+  $scope.todos = Todo.todos;
 
   $scope.keyup = function (event) {
     if (event.keyCode == 13) {
@@ -11,7 +10,19 @@ MwayTodo.controller('TodosCtrl', function ($scope) {
   };
 
   $scope.add = function () {
-    $scope.todos.push({ title: $scope.newTodo, done: false });
+    Todo.add($scope.newTodo);
     $scope.newTodo = '';
   };
+});
+
+MwayTodo.service('Todo', function() {
+  var todos = [];
+
+  return {
+    todos: todos,
+
+    add: function(title) {
+      todos.push({ title: title, done: false });
+    }
+  }
 });
