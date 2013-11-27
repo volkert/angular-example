@@ -15,14 +15,10 @@ MwayTodo.controller('TodosCtrl', function ($scope, Todo) {
   };
 });
 
-MwayTodo.service('Todo', function() {
-  var todos = [];
+MwayTodo.service('Todo', function () {
+  this.todos = [];
 
-  return {
-    todos: todos,
-
-    add: function(title) {
-      todos.push({ title: title, done: false });
-    }
-  }
+  this.add = function (title) {
+    todos.push({ title: title, done: false });
+  };
 });
