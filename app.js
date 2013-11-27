@@ -16,15 +16,11 @@ MwayTodo.controller('TodosCtrl', function ($scope, Todo) {
 });
 
 MwayTodo.service('Todo', function () {
-  var todos = [];
+  this.todos = [];
 
-  return {
-    todos: todos,
-
-    add: function (title) {
-      todos.push({ title: title, done: false });
-    }
-  }
+  this.add = function (title) {
+    todos.push({ title: title, done: false });
+  };
 });
 
 MwayTodo.directive('tabs', function () {
@@ -34,13 +30,13 @@ MwayTodo.directive('tabs', function () {
     transclude: true,
     template:
         '<div>' +
-        ' <ul class="nav nav-tabs">' +
-        '  <li ng-repeat="pane in panes" ng-class="{ active: pane.selected }">' +
-        '    <a href="#" ng-click="select(pane)">{{ pane.title }}</a>' +
-        '  </li>' +
-        ' </ul>' +
-        ' <div class="tab-content" ng-transclude></div>' +
-        '</div>',
+            ' <ul class="nav nav-tabs">' +
+            '  <li ng-repeat="pane in panes" ng-class="{ active: pane.selected }">' +
+            '    <a href="#" ng-click="select(pane)">{{ pane.title }}</a>' +
+            '  </li>' +
+            ' </ul>' +
+            ' <div class="tab-content" ng-transclude></div>' +
+            '</div>',
 
     controller: function ($scope) {
       var panes = $scope.panes = [];
